@@ -24,52 +24,11 @@ Defect Control Analytics: Isolates claim rates by product category (e.g., Audio,
 
 Interactive Slicers: Allows deep-diving into individual store performance using native temporal filters and item category button arrays.
 
-🗄️ Relational Database Schema & Data Engineering
-The backend data layer is managed via structured SQL tables containing data integrity constraints (FOREIGN KEY, PRIMARY KEY, NOT NULL, and CHECK).
 
-SQL
-CREATE TABLE category (
-    category_id VARCHAR(50) PRIMARY KEY,
-    category_name VARCHAR(100) NOT NULL
-);
+🚀 Advanced Business Insights (SQL Script Showcase):
 
-CREATE TABLE storedetails (
-    store_id VARCHAR(50) PRIMARY KEY,
-    store_name VARCHAR(150) NOT NULL,
-    city VARCHAR(100),
-    country VARCHAR(100)
-);
+The SQL analytics file contains multi-tiered problem-solving techniques focusing on optimizing complex data extractions.
 
-CREATE TABLE products (
-    product_id VARCHAR(50) PRIMARY KEY,
-    product_name VARCHAR(150) NOT NULL,
-    category_id VARCHAR(50),
-    launch_date DATE,
-    price INT,
-    FOREIGN KEY (category_id) REFERENCES category(category_id)
-);
-
-CREATE TABLE sales_data (
-    sale_id VARCHAR(50) PRIMARY KEY,
-    sale_date DATE NOT NULL,
-    store_id VARCHAR(50),
-    product_id VARCHAR(50),
-    quantity INT NOT NULL CHECK (quantity > 0),
-    FOREIGN KEY (store_id) REFERENCES storedetails(store_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-
-CREATE TABLE warrantystatus (
-    claim_id VARCHAR(50) PRIMARY KEY,
-    claim_date DATE NOT NULL,
-    sale_id VARCHAR(50),
-    repair_status VARCHAR(100),
-    FOREIGN KEY (sale_id) REFERENCES sales_data(sale_id)
-);
-
-
-🚀 Advanced Business Insights (SQL Script Showcase)
-The SQL analytics file contains multi-tiered problem-solving techniques focusing on optimizing complex data extractions. 
 Key methodologies used include Common Table Expressions (CTEs), Window Functions (DENSE_RANK, LAG, SUM OVER), and PostgreSQL Statistical Functions.
 
 Key Analytical Inquiries Answered:
